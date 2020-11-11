@@ -8,12 +8,9 @@ node('docker') {
     archive 'target/*.jar'
   }
   stage('Static Code Analysis'){
-    bat 'mvn clean verify sonar:sonar'
-    -Dsonar.projectName = 'krystal-project'
-    -Dsonar.projectKey = 'krystal-project'
-    -Dsonar.projectVersion = "$BUILD_NUMBER"
+    bat 'mvn clean verify sonar:sonar -Dsonar.projectName=krystal-project -Dsonar.projectKey=krystal-project -Dsonar.projectVersion=$BUILD_NUMBER';
   }
-  stage ('Integration Test'){
+  stage ('Integration Test'){ 
     bat 'mvn clean verify -Dsurefire.skip=true';
     junit '**/target/failsafe-reports/TEST-*.xml'
     archive 'target/*.jar'
