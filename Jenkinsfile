@@ -9,9 +9,9 @@ node('docker') {
   }
   stage('Static Code Analysis'){
     bat 'mvn clean verify sonar:sonar'
-    -Dsonar.projectName=krystal-project
-    -Dsonar.projectKey=krystal-project
-    -Dsonar.projectVersion=$BUILD_NUMBER
+    -Dsonar.projectName = krystal-project
+    -Dsonar.projectKey = krystal-project
+    -Dsonar.projectVersion = $BUILD_NUMBER
   }
   stage ('Integration Test'){
     bat 'mvn clean verify -Dsurefire.skip=true';
