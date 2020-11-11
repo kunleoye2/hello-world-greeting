@@ -8,7 +8,7 @@ node('docker') {
     archive 'target/*.jar'
   }
   stage('Static Code Analysis'){
-    bat 'mvn clean verify sonar:sonar
+    bat 'mvn clean verify sonar:sonar'
     -Dsonar.projectName=krystal-project
     -Dsonar.projectKey=krystal-project
     -Dsonar.projectVersion=$BUILD_NUMBER';
