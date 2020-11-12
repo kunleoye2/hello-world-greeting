@@ -1,7 +1,6 @@
-node('docker') {
-  stage('Poll') {
+node('master') {
     checkout scm
-  }
+
   stage('Build & Unit test'){
     bat 'mvn clean verify -DskipITs=true';
     junit '**/target/surefire-reports/TEST-*.xml'
